@@ -1,0 +1,3 @@
+export default function Constellation({ compact = false }) {
+  return <div className={compact ? 'mini-constellation' : 'constellation constellation-hero'} aria-hidden="true">{!compact && <><div className="constellation-lines" /><div className="constellation-label label-top">today's focus</div><div className="constellation-label label-bottom">small steps / long way</div></>}<span className="star star-a" /><span className="star star-b" /><span className="star star-c" /><span className="star star-d" />{!compact && <div className="planet"><span>?</span></div>}{compact && <><span /><span /><span /></>}</div>
+}

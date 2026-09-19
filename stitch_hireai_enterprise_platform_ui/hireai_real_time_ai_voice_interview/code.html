@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HireAI - Real-Time Autonomous AI Voice Interview Room</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#e4e1e6",
+            "tertiary-container": "#009bd1",
+            "surface-container": "#1f1f22",
+            "on-error": "#690005",
+            "inverse-on-surface": "#303033",
+            "on-primary-fixed": "#3e0022",
+            "primary": "#ffb0cd",
+            "inverse-surface": "#e4e1e6",
+            "on-tertiary-fixed": "#001e2c",
+            "background": "#131316",
+            "tertiary-fixed": "#c4e7ff",
+            "error": "#ffb4ab",
+            "on-primary": "#640039",
+            "error-container": "#93000a",
+            "primary-container": "#f751a1",
+            "on-secondary-container": "#ffd8fd",
+            "surface": "#131316",
+            "surface-container-high": "#2a2a2d",
+            "on-secondary": "#580065",
+            "surface-variant": "#353438",
+            "tertiary": "#7bd0ff",
+            "surface-container-highest": "#353438",
+            "outline-variant": "#574048",
+            "secondary": "#fbabff",
+            "on-error-container": "#ffdad6",
+            "on-secondary-fixed-variant": "#7c008e",
+            "secondary-fixed": "#ffd6fd",
+            "on-tertiary-container": "#002d40",
+            "on-surface-variant": "#debec8",
+            "secondary-container": "#ae05c6",
+            "on-tertiary-fixed-variant": "#004c69",
+            "surface-bright": "#39393c",
+            "on-primary-container": "#570032",
+            "surface-container-low": "#1b1b1e",
+            "surface-container-lowest": "#0e0e11",
+            "outline": "#a68992",
+            "on-background": "#e4e1e6",
+            "secondary-fixed-dim": "#fbabff",
+            "surface-tint": "#ffb0cd",
+            "surface-dim": "#131316",
+            "on-primary-fixed-variant": "#8c0053",
+            "on-tertiary": "#00354a",
+            "primary-fixed-dim": "#ffb0cd",
+            "on-secondary-fixed": "#36003e",
+            "primary-fixed": "#ffd9e4",
+            "inverse-primary": "#b4136d",
+            "tertiary-fixed-dim": "#7bd0ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2.5rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "gutter-mobile": "0.75rem",
+            "margin-mobile": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "margin": "2rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-md": ["Geist"],
+            "headline-xl": ["Geist"],
+            "headline-sm": ["Geist"],
+            "body-lg": ["Geist"],
+            "headline-lg": ["Geist"],
+            "headline-md": ["Geist"],
+            "body-sm": ["Geist"],
+            "label-lg": ["JetBrains Mono"],
+            "headline-xl-mobile": ["Geist"],
+            "label-sm": ["JetBrains Mono"],
+            "label-md": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Geist"]
+          },
+          "fontSize": {
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    @keyframes orb-breathe {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 45px rgba(247, 81, 161, 0.45)) drop-shadow(0 0 90px rgba(174, 5, 198, 0.25)); }
+      50% { transform: scale(1.04); filter: drop-shadow(0 0 65px rgba(247, 81, 161, 0.65)) drop-shadow(0 0 120px rgba(123, 208, 255, 0.35)); }
+    }
+    @keyframes rotate-spectrum {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes typing-pulse {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+    .animate-orb { animation: orb-breathe 4s ease-in-out infinite; }
+    .animate-spin-slow { animation: rotate-spectrum 28s linear infinite; }
+    .animate-typing-dot { animation: typing-pulse 1.2s ease-in-out infinite; }
+    .custom-scroll::-webkit-scrollbar { width: 4px; }
+    .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #353438; border-radius: 9999px; }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased h-screen w-screen overflow-hidden flex flex-col select-none">
+<!-- TOP BAR: Focused Live Header -->
+<header class="h-16 w-full px-space-lg flex items-center justify-between border-b border-outline-variant/30 bg-surface-container-lowest/80 backdrop-blur-md z-30 shrink-0">
+<!-- Left Metadata -->
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs px-space-sm py-1 rounded-lg bg-surface-container-high/60 border border-outline-variant/40">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-headline-sm text-headline-sm text-primary font-semibold tracking-tight">HireAI</span>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant/30 hidden sm:block"></div>
+<div class="flex items-center gap-space-sm text-on-surface">
+<span class="font-headline-sm text-headline-sm font-medium">Alex Johnson</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm hidden md:inline">Senior Backend Engineer</span>
+</div>
+<div class="px-2 py-0.5 rounded-full bg-surface-container-high border border-outline-variant/40 text-on-surface-variant font-label-sm text-label-sm">
+        Question 4 of 10
+      </div>
+</div>
+<!-- Center Session Live Badge -->
+<div class="hidden lg:flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container-low border border-outline-variant/40 shadow-[0_0_15px_-3px_rgba(247,81,161,0.2)]">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary-container"></span>
+</span>
+<span class="font-label-md text-label-md text-on-surface tracking-wide">Live AI Interview Session</span>
+</div>
+<!-- Right Telemetry & End Button -->
+<div class="flex items-center gap-space-md">
+<div class="hidden sm:flex items-center gap-space-sm font-label-md text-label-md text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary">schedule</span>
+<span class="text-on-surface font-label-md" id="session-timer">14:28</span>
+<span class="text-body-sm text-outline">elapsed</span>
+</div>
+<span class="text-outline-variant">•</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">wifi_channel</span>
+<span class="text-on-surface">Optimal (24ms)</span>
+</div>
+</div>
+<button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-error-container/40 hover:bg-error-container/70 border border-error/30 text-error font-body-sm text-body-sm transition-all duration-150 active:scale-95" id="end-interview-btn">
+<span class="material-symbols-outlined text-[16px]">call_end</span>
+<span>End Interview</span>
+</button>
+</div>
+</header>
+<!-- MAIN VIEWPORT: Stage + Right Drawer Split -->
+<div class="flex-1 flex w-full overflow-hidden relative">
+<!-- CENTER STAGE: AI Voice Neural Nexus -->
+<main class="flex-1 flex flex-col items-center justify-between p-space-lg relative overflow-hidden bg-gradient-to-b from-background via-surface-container-lowest to-background">
+<!-- Subtle Ambient Backlight Glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] bg-secondary-container/15 rounded-full blur-2xl pointer-events-none"></div>
+<!-- Top Session Topic Breadcrumb -->
+<div class="w-full flex justify-between items-center text-on-surface-variant font-label-sm text-label-sm z-10">
+<div class="flex items-center gap-space-xs bg-surface-container/60 px-space-md py-1 rounded-full border border-outline-variant/30">
+<span class="text-outline">Topic:</span>
+<span class="text-on-surface font-medium">Distributed Systems &amp; Concurrency Architecture</span>
+</div>
+<div class="hidden md:flex items-center gap-2">
+<span class="inline-block w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-on-surface-variant">Neural Voice Engine: v4.2 Pro</span>
+</div>
+</div>
+<!-- THE AI INTERVIEWER AVATAR: Holographic Multi-layered Orb -->
+<div class="flex-1 flex flex-col items-center justify-center relative w-full my-auto z-10">
+<!-- Rotating Orbital Track Ring -->
+<div class="absolute w-[360px] h-[360px] rounded-full border border-outline-variant/20 animate-spin-slow pointer-events-none flex items-center justify-center">
+<div class="absolute -top-1 w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#f751a1]"></div>
+<div class="absolute -bottom-1 w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_#7bd0ff]"></div>
+</div>
+<div class="absolute w-[420px] h-[420px] rounded-full border border-outline-variant/10 pointer-events-none"></div>
+<!-- The Glowing Neural Core -->
+<div class="relative w-64 h-64 md:w-72 md:h-72 flex items-center justify-center animate-orb">
+<!-- Outer dynamic ring halo -->
+<div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary-container/30 via-secondary-container/20 to-tertiary-container/30 blur-md"></div>
+<!-- Mid Frosted Glass Membrane -->
+<div class="absolute inset-2 rounded-full bg-surface-container-lowest/80 border border-outline-variant/50 backdrop-blur-xl shadow-inner"></div>
+<!-- Internal Liquid Synapse Shader Projection -->
+<div class="relative w-48 h-48 rounded-full overflow-hidden flex items-center justify-center bg-gradient-to-br from-[#1b1022] via-[#2d0f30] to-[#0e1628] border border-primary/30">
+<!-- Pulsing Waveform Lines inside Avatar Core -->
+<div class="flex items-center justify-center gap-1.5 h-28 w-full px-4">
+<span class="w-1.5 bg-primary rounded-full transition-all duration-150 h-10 animate-pulse"></span>
+<span class="w-1.5 bg-primary-container rounded-full transition-all duration-150 h-16 animate-pulse" style="animation-delay: 100ms;"></span>
+<span class="w-1.5 bg-secondary rounded-full transition-all duration-150 h-24 animate-pulse" style="animation-delay: 200ms;"></span>
+<span class="w-1.5 bg-tertiary rounded-full transition-all duration-150 h-20 animate-pulse" style="animation-delay: 350ms;"></span>
+<span class="w-1.5 bg-primary-fixed rounded-full transition-all duration-150 h-14 animate-pulse" style="animation-delay: 150ms;"></span>
+<span class="w-1.5 bg-primary rounded-full transition-all duration-150 h-22 animate-pulse" style="animation-delay: 250ms;"></span>
+<span class="w-1.5 bg-secondary-fixed rounded-full transition-all duration-150 h-8 animate-pulse" style="animation-delay: 400ms;"></span>
+</div>
+<!-- Central AI Spark Core Point -->
+<div class="absolute w-8 h-8 rounded-full bg-primary/20 backdrop-blur-sm border border-primary flex items-center justify-center shadow-[0_0_15px_#f751a1]">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+</div>
+</div>
+<!-- State Indicator Pill (Dynamic AI Subtitle / Question) -->
+<div class="mt-8 max-w-2xl px-space-lg py-3 rounded-2xl bg-surface-container-low/90 border border-outline-variant/40 shadow-xl backdrop-blur-md flex items-start gap-space-sm transition-all duration-300">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<div class="flex flex-col text-left">
+<span class="text-primary font-headline-sm text-headline-sm font-medium">AI Interviewer is Speaking...</span>
+<p class="text-on-surface font-body-md text-body-md mt-1 leading-relaxed">
+              "Could you elaborate on how you handled distributed state and race conditions during high-volume writes?"
+            </p>
+</div>
+</div>
+<!-- Real-time Candidate Microphone Audio Spectrum Analyzer -->
+<div class="mt-6 flex flex-col items-center gap-1.5 w-72">
+<div class="flex items-center justify-between w-full text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">mic</span>
+              Candidate Input
+            </span>
+<span class="text-tertiary">Active (-18dB)</span>
+</div>
+<!-- Equalizer Bars -->
+<div class="flex items-end justify-center gap-1 w-full h-8 px-2 py-1 rounded-lg bg-surface-container-lowest/80 border border-outline-variant/30">
+<div class="flex-1 bg-outline-variant/40 h-2 rounded-full"></div>
+<div class="flex-1 bg-primary/60 h-4 rounded-full"></div>
+<div class="flex-1 bg-primary-container h-6 rounded-full"></div>
+<div class="flex-1 bg-primary h-5 rounded-full"></div>
+<div class="flex-1 bg-tertiary h-3 rounded-full"></div>
+<div class="flex-1 bg-primary/50 h-5 rounded-full"></div>
+<div class="flex-1 bg-primary-container h-7 rounded-full"></div>
+<div class="flex-1 bg-secondary h-4 rounded-full"></div>
+<div class="flex-1 bg-outline-variant/40 h-2 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- BOTTOM FLOATING CONTROL DOCK -->
+<div class="w-full max-w-xl mx-auto z-20">
+<div class="flex items-center justify-between px-space-md py-2.5 rounded-2xl bg-surface-container-lowest/90 border border-outline-variant/40 backdrop-blur-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)]">
+<!-- Mic Toggle -->
+<button class="flex items-center gap-2 px-space-md py-2 rounded-xl bg-surface-container-high/80 hover:bg-surface-container-high border border-outline-variant/40 text-on-surface transition-all active:scale-95" id="mic-toggle-btn">
+<span class="material-symbols-outlined text-[20px] text-primary" id="mic-icon">mic</span>
+<span class="font-label-md text-label-md hidden sm:inline" id="mic-status">Muted</span>
+</button>
+<!-- Audio Out / Device -->
+<button class="flex items-center gap-2 px-space-md py-2 rounded-xl bg-surface-container-high/40 hover:bg-surface-container-high/80 border border-outline-variant/30 text-on-surface-variant hover:text-on-surface transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+<span class="font-label-md text-label-md hidden sm:inline">Default Output</span>
+</button>
+<!-- Closed Captions Toggle -->
+<button class="p-2 sm:px-space-md sm:py-2 rounded-xl bg-surface-container-high/40 hover:bg-surface-container-high/80 border border-outline-variant/30 text-on-surface-variant hover:text-on-surface transition-all active:scale-95 flex items-center gap-1.5" id="cc-toggle">
+<span class="material-symbols-outlined text-[20px]">closed_caption</span>
+<span class="font-label-md text-label-md hidden md:inline">Captions</span>
+</button>
+<!-- Start / Submit Answer CTA with Space Hint -->
+<button class="flex items-center gap-2 px-space-lg py-2.5 rounded-xl bg-gradient-to-r from-primary-container to-secondary-container hover:brightness-110 text-white font-headline-sm text-headline-sm font-medium shadow-[0_0_25px_-5px_rgba(247,81,161,0.4)] transition-all active:scale-95" id="answer-action-btn">
+<span class="material-symbols-outlined text-[20px]">record_voice_over</span>
+<span>Start Answer</span>
+<kbd class="hidden md:inline-block px-1.5 py-0.5 rounded bg-black/30 text-[10px] font-label-sm border border-white/20">Space</kbd>
+</button>
+</div>
+</div>
+</main>
+<!-- RIGHT DRAWER / FLOATING PANEL: Live Transcript & Rubric Intelligence -->
+<aside class="w-80 md:w-96 shrink-0 h-full border-l border-outline-variant/30 bg-surface-container-lowest flex flex-col justify-between z-20">
+<!-- Panel Header -->
+<div class="px-space-md py-3.5 border-b border-outline-variant/30 flex items-center justify-between bg-surface-container-low/60 backdrop-blur-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">notes</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">Verbatim Transcript</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-tertiary"></span>
+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Live Sync</span>
+</div>
+</div>
+<!-- Scrolling Verbatim Feed -->
+<div class="flex-1 p-space-md overflow-y-auto space-y-4 custom-scroll font-body-sm text-body-sm text-on-surface-variant">
+<!-- Turn 1: AI -->
+<div class="flex flex-col gap-1 p-space-sm rounded-xl bg-surface-container-low/40 border border-outline-variant/20">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+              HireAI Agent
+            </span>
+<span class="text-outline">10:12 AM</span>
+</div>
+<p class="text-on-surface leading-relaxed mt-0.5">
+            "Welcome Alex. Let's start with your background in distributed data pipelines."
+          </p>
+</div>
+<!-- Turn 2: Alex -->
+<div class="flex flex-col gap-1 p-space-sm rounded-xl bg-surface-container-high/30 border border-outline-variant/30">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-tertiary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">person</span>
+              Alex Johnson
+            </span>
+<span class="text-outline">10:13 AM</span>
+</div>
+<p class="text-on-surface leading-relaxed mt-0.5">
+            "At my previous company, we designed an event-driven ingest system using Kafka and Redis streams handling 40k events/sec..."
+          </p>
+</div>
+<!-- Turn 3: AI Follow-up -->
+<div class="flex flex-col gap-1 p-space-sm rounded-xl bg-surface-container-low/40 border border-outline-variant/20">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+              HireAI Agent
+            </span>
+<span class="text-outline">10:15 AM</span>
+</div>
+<p class="text-on-surface leading-relaxed mt-0.5">
+            "How did you guarantee idempotency when retries occurred?"
+          </p>
+</div>
+<!-- Turn 4: Live Speech Candidate Streaming with Cursor -->
+<div class="flex flex-col gap-1 p-space-sm rounded-xl bg-surface-container-high/50 border border-primary/30 relative">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-tertiary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">mic</span>
+              Alex Johnson (Transcribing...)
+            </span>
+<span class="text-primary-container font-label-sm text-[10px] animate-pulse">STREAMING</span>
+</div>
+<p class="text-on-surface leading-relaxed mt-0.5">
+            "We implemented distributed locks backed by Redis redlock and deduplication keys keyed on the original event UUID..."
+            <span class="inline-block w-1.5 h-3.5 bg-primary-container ml-1 align-middle animate-typing-dot"></span>
+</p>
+</div>
+</div>
+<!-- Mini Rubric & Real-Time Context Card -->
+<div class="p-space-md border-t border-outline-variant/30 bg-surface-container-low/70">
+<div class="flex items-center justify-between mb-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+            Real-Time Rubric Depth
+          </span>
+<span class="font-label-md text-label-md text-primary font-semibold">94% Fit</span>
+</div>
+<!-- Detected Knowledge Signals / Rubric Pills -->
+<div class="flex flex-wrap gap-1.5 mt-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 border border-primary/30 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px]">check_circle</span>
+            Idempotency
+          </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-tertiary/10 border border-tertiary/30 text-tertiary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px]">check_circle</span>
+            Distributed Locks
+          </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary/10 border border-secondary/30 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px]">check_circle</span>
+            At-least-once delivery
+          </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm">
+            Kafka Partitioning
+          </span>
+</div>
+<!-- Telemetry Progress Bar for Depth -->
+<div class="mt-3 space-y-1">
+<div class="flex justify-between font-label-sm text-label-sm text-outline">
+<span>Technical Accuracy</span>
+<span class="text-on-surface">Strong Signal</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden flex">
+<div class="bg-primary-container h-full w-[65%]"></div>
+<div class="bg-tertiary h-full w-[20%]"></div>
+<div class="bg-outline-variant h-full w-[15%]"></div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Confirmation Modal (Hidden by Default) -->
+<div class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-4" id="end-modal">
+<div class="max-w-md w-full bg-surface-container-low border border-outline-variant/50 rounded-2xl p-space-lg shadow-2xl">
+<div class="flex items-center gap-space-sm text-error mb-space-sm">
+<span class="material-symbols-outlined text-[28px]">warning</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">End AI Interview?</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Terminating this session will generate the autonomous candidate scorecard and evaluation matrix based on 4 answered questions.
+      </p>
+<div class="flex items-center justify-end gap-space-md mt-space-lg">
+<button class="px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface font-body-sm text-body-sm transition-all" id="cancel-modal-btn">
+          Resume Session
+        </button>
+<button class="px-space-md py-2 rounded-lg bg-error-container hover:bg-error-container/80 text-error font-body-sm text-body-sm transition-all" id="confirm-modal-btn">
+          Submit &amp; End Session
+        </button>
+</div>
+</div>
+</div>
+<!-- Interactive Logic for Real-time Simulation -->
+<script>
+    // Mic Toggle Simulation
+    const micBtn = document.getElementById('mic-toggle-btn');
+    const micIcon = document.getElementById('mic-icon');
+    const micStatus = document.getElementById('mic-status');
+    let isMicActive = false;
+
+    micBtn.addEventListener('click', () => {
+      isMicActive = !isMicActive;
+      if (isMicActive) {
+        micIcon.innerText = 'mic';
+        micIcon.classList.remove('text-primary');
+        micIcon.classList.add('text-green-400');
+        micStatus.innerText = 'Transmitting';
+      } else {
+        micIcon.innerText = 'mic_off';
+        micIcon.classList.remove('text-green-400');
+        micIcon.classList.add('text-primary');
+        micStatus.innerText = 'Muted';
+      }
+    });
+
+    // Start / Submit Answer Toggle
+    const answerBtn = document.getElementById('answer-action-btn');
+    let isAnswering = false;
+
+    function toggleAnswerState() {
+      isAnswering = !isAnswering;
+      if (isAnswering) {
+        answerBtn.innerHTML = `
+          <span class="material-symbols-outlined text-[20px] animate-spin">sync</span>
+          <span>Submit Answer</span>
+          <kbd class="hidden md:inline-block px-1.5 py-0.5 rounded bg-black/30 text-[10px] font-label-sm border border-white/20">Space</kbd>
+        `;
+        answerBtn.classList.remove('from-primary-container', 'to-secondary-container');
+        answerBtn.classList.add('from-tertiary-container', 'to-tertiary');
+      } else {
+        answerBtn.innerHTML = `
+          <span class="material-symbols-outlined text-[20px]">record_voice_over</span>
+          <span>Start Answer</span>
+          <kbd class="hidden md:inline-block px-1.5 py-0.5 rounded bg-black/30 text-[10px] font-label-sm border border-white/20">Space</kbd>
+        `;
+        answerBtn.classList.remove('from-tertiary-container', 'to-tertiary');
+        answerBtn.classList.add('from-primary-container', 'to-secondary-container');
+      }
+    }
+
+    answerBtn.addEventListener('click', toggleAnswerState);
+
+    // Spacebar listener for answer flow
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && e.target === document.body) {
+        e.preventDefault();
+        toggleAnswerState();
+      }
+    });
+
+    // Session Timer Increment
+    let seconds = 868; // 14:28
+    const timerElem = document.getElementById('session-timer');
+    setInterval(() => {
+      seconds++;
+      const m = Math.floor(seconds / 60);
+      const s = seconds % 60;
+      timerElem.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+    }, 1000);
+
+    // End Interview Modal Triggers
+    const endBtn = document.getElementById('end-interview-btn');
+    const modal = document.getElementById('end-modal');
+    const cancelModal = document.getElementById('cancel-modal-btn');
+    const confirmModal = document.getElementById('confirm-modal-btn');
+
+    endBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+    cancelModal.addEventListener('click', () => modal.classList.add('hidden'));
+    confirmModal.addEventListener('click', () => {
+      modal.classList.add('hidden');
+      alert('AI Interview concluded. Synthesizing candidate debrief matrix...');
+    });
+  </script>
+</body></html>

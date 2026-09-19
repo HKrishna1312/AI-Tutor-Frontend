@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HireAI - Recruiter Dashboard &amp; Intelligence Pipeline</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts: Geist & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with configuration -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#e4e1e6",
+            "tertiary-container": "#009bd1",
+            "surface-container": "#1f1f22",
+            "on-error": "#690005",
+            "inverse-on-surface": "#303033",
+            "on-primary-fixed": "#3e0022",
+            "primary": "#ffb0cd",
+            "inverse-surface": "#e4e1e6",
+            "on-tertiary-fixed": "#001e2c",
+            "background": "#131316",
+            "tertiary-fixed": "#c4e7ff",
+            "error": "#ffb4ab",
+            "on-primary": "#640039",
+            "error-container": "#93000a",
+            "primary-container": "#f751a1",
+            "on-secondary-container": "#ffd8fd",
+            "surface": "#131316",
+            "surface-container-high": "#2a2a2d",
+            "on-secondary": "#580065",
+            "surface-variant": "#353438",
+            "tertiary": "#7bd0ff",
+            "surface-container-highest": "#353438",
+            "outline-variant": "#574048",
+            "secondary": "#fbabff",
+            "on-error-container": "#ffdad6",
+            "on-secondary-fixed-variant": "#7c008e",
+            "secondary-fixed": "#ffd6fd",
+            "on-tertiary-container": "#002d40",
+            "on-surface-variant": "#debec8",
+            "secondary-container": "#ae05c6",
+            "on-tertiary-fixed-variant": "#004c69",
+            "surface-bright": "#39393c",
+            "on-primary-container": "#570032",
+            "surface-container-low": "#1b1b1e",
+            "surface-container-lowest": "#0e0e11",
+            "outline": "#a68992",
+            "on-background": "#e4e1e6",
+            "secondary-fixed-dim": "#fbabff",
+            "surface-tint": "#ffb0cd",
+            "surface-dim": "#131316",
+            "on-primary-fixed-variant": "#8c0053",
+            "on-tertiary": "#00354a",
+            "primary-fixed-dim": "#ffb0cd",
+            "on-secondary-fixed": "#36003e",
+            "primary-fixed": "#ffd9e4",
+            "inverse-primary": "#b4136d",
+            "tertiary-fixed-dim": "#7bd0ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2.5rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "gutter-mobile": "0.75rem",
+            "margin-mobile": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "margin": "2rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-md": ["Geist"],
+            "headline-xl": ["Geist"],
+            "headline-sm": ["Geist"],
+            "body-lg": ["Geist"],
+            "headline-lg": ["Geist"],
+            "headline-md": ["Geist"],
+            "body-sm": ["Geist"],
+            "label-lg": ["JetBrains Mono"],
+            "headline-xl-mobile": ["Geist"],
+            "label-sm": ["JetBrains Mono"],
+            "label-md": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Geist"]
+          },
+          "fontSize": {
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 18px;
+      line-height: 1;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0e0e11;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #27272a;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex selection:bg-primary-container selection:text-on-primary">
+<!-- ================= SIDEBAR NAVIGATION (SHARED COMPONENT: SideNavBar) ================= -->
+<aside class="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between p-space-md z-40 bg-surface-container-lowest border-r border-outline-variant/30 select-none">
+<div class="flex flex-col gap-space-md">
+<!-- Brand & Workspace Header -->
+<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-container to-secondary flex items-center justify-center shadow-[0_0_15px_rgba(247,81,161,0.35)]">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div class="flex flex-col">
+<span class="text-headline-sm font-headline-sm font-semibold text-on-surface tracking-tight leading-none">HireAI</span>
+<span class="text-label-sm font-label-sm text-outline tracking-wider mt-0.5">Enterprise Intelligence</span>
+</div>
+</div>
+</div>
+<!-- Workspace Switcher Pill -->
+<button class="w-full flex items-center justify-between px-space-sm py-1.5 rounded-lg bg-surface-container-low/60 border border-outline-variant/20 text-on-surface-variant hover:border-outline-variant/50 hover:text-on-surface transition-all text-left">
+<div class="flex items-center gap-2 truncate">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-label-sm font-label-sm truncate">Recruiter Workspace — Enterprise</span>
+</div>
+<span class="material-symbols-outlined text-outline">unfold_more</span>
+</button>
+<!-- Primary Navigation Links -->
+<nav class="flex flex-col gap-1 mt-space-xs">
+<!-- 1. Dashboard (Active Destination) -->
+<a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg bg-surface-container-high/60 text-primary font-medium border-l-2 border-primary shadow-[0_0_20px_-5px_rgba(247,81,161,0.25)] scale-[0.99] transition-transform duration-100 ease-out" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<!-- 2. Jobs & Pipeline -->
+<a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low/40 transition-all duration-150" href="#">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined">work</span>
+<span class="text-label-md font-label-md">Jobs &amp; Pipeline</span>
+</div>
+<span class="text-label-sm font-label-sm bg-surface-container-high px-1.5 py-0.5 rounded text-outline">18</span>
+</a>
+<!-- 3. Candidates -->
+<a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low/40 transition-all duration-150" href="#">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined">group</span>
+<span class="text-label-md font-label-md">Candidates</span>
+</div>
+<span class="text-label-sm font-label-sm bg-surface-container-high px-1.5 py-0.5 rounded text-outline">248</span>
+</a>
+<!-- 4. AI Matching -->
+<a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low/40 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+<span class="text-label-md font-label-md">AI Insights</span>
+</a>
+<!-- 5. Interviews & Voice -->
+<a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low/40 transition-all duration-150" href="#">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined">record_voice_over</span>
+<span class="text-label-md font-label-md">Interviews &amp; Voice</span>
+</div>
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+</a>
+<!-- 6. Settings -->
+<a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low/40 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Footer Profile & Secondary Links -->
+<div class="flex flex-col gap-space-sm pt-space-sm border-t border-outline-variant/20">
+<div class="flex items-center justify-between px-space-xs text-outline">
+<button class="flex items-center gap-1.5 text-label-sm font-label-sm hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[16px]">help_outline</span>
+<span>Help &amp; Docs</span>
+</button>
+<button class="flex items-center gap-1.5 text-label-sm font-label-sm hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[16px]">manage_accounts</span>
+<span>Account</span>
+</button>
+</div>
+<!-- Recruiter Profile Card -->
+<div class="flex items-center gap-space-sm p-2 rounded-lg bg-surface-container-low/70 border border-outline-variant/20">
+<div class="relative w-8 h-8 rounded-full ring-1 ring-primary/40 overflow-hidden flex-shrink-0 bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="Elena Vance portrait, senior female technology executive with sharp minimalist aesthetic, soft dramatic studio lighting, dark graphite backdrop matching dark glassmorphism UI theme" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvI0EBykvtWNoOZsOr8NtC8IMVg2IquXOXP2MKFqofI6ddP4Jqw2yyQXjUmCh9qP9hvxI9K8_UfAnwEbZbZpvf80qPFWsI09uLZGN-GR8smuJmFRPe9Y1vdmEEmzNcNcUTmOKut56udfGwA-n-N0i8tnHByfTGZje450xkmAvo8wm42AHzvvtFnAT0exRYOgSZpYIDaxllxKi--3xxdHJcIl0S817SMhAFJpuig8TWnoDrd5TGGVlG"/>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="text-headline-sm font-headline-sm text-xs font-semibold text-on-surface truncate">Elena Vance</span>
+<span class="text-label-sm font-label-sm text-outline truncate text-[11px]">Head of Talent</span>
+</div>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- ================= MAIN VIEW AREA ================= -->
+<div class="flex-1 pl-64 flex flex-col min-h-screen bg-background">
+<!-- Top Header Bar (Shared Component: TopNavBar implementation) -->
+<header class="sticky top-0 right-0 w-full z-30 flex items-center justify-between px-space-lg py-space-sm bg-surface/80 backdrop-blur-md border-b border-outline-variant/20">
+<!-- Left: Title & Command Search Bar -->
+<div class="flex items-center gap-space-lg flex-1 max-w-2xl">
+<div class="flex flex-col">
+<h1 class="text-headline-sm font-headline-sm font-bold text-on-surface tracking-tight">Recruitment Overview</h1>
+<span class="text-label-sm font-label-sm text-outline">Real-time candidate telemetry &amp; telemetry scorecards</span>
+</div>
+<!-- Command+K Search Bar -->
+<div class="relative flex-1 max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[16px]">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg pl-9 pr-12 py-1.5 text-body-sm font-body-sm text-on-surface placeholder:text-outline/70 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/40 transition-all" placeholder="Search candidates, jobs, skills..." type="text"/>
+<span class="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-label-sm text-outline bg-surface-container-high px-1.5 py-0.5 rounded border border-outline-variant/30">⌘K</span>
+</div>
+</div>
+<!-- Right: Actions Cluster -->
+<div class="flex items-center gap-space-sm">
+<!-- Live Notifications Bell with Badge -->
+<button class="relative w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-low border border-outline-variant/30 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary-container ring-2 ring-surface"></span>
+</button>
+<!-- Secondary: + Create Job -->
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high/60 border border-outline-variant/30 text-on-surface text-label-md font-label-md transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>Create Job</span>
+</button>
+<!-- Primary CTA: AI Synthesize -->
+<button class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-primary-container to-secondary-container hover:brightness-110 text-white text-label-md font-label-md font-medium shadow-[0_0_25px_-5px_rgba(247,81,161,0.45)] border border-primary/30 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span>AI Synthesize</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="p-space-lg space-y-space-lg max-w-7xl w-full mx-auto">
+<!-- ================= 4 METRIC STATS CARDS ================= -->
+<section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Card 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-low/70 border border-outline-variant/30 relative overflow-hidden backdrop-blur-sm group hover:border-primary/40 transition-all">
+<div class="flex items-start justify-between">
+<span class="text-label-md font-label-md text-outline">Total Active Candidates</span>
+<span class="p-1.5 rounded-lg bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-sm">group</span>
+</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg font-bold text-on-surface">248</span>
+<span class="text-label-sm font-label-sm text-emerald-400 flex items-center font-semibold">
+<span class="material-symbols-outlined text-xs">arrow_upward</span> +14%
+            </span>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-1">vs. previous 7-day period</p>
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-all pointer-events-none"></div>
+</div>
+<!-- Card 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-low/70 border border-outline-variant/30 relative overflow-hidden backdrop-blur-sm group hover:border-primary/40 transition-all">
+<div class="flex items-start justify-between">
+<span class="text-label-md font-label-md text-outline">Open Roles</span>
+<span class="p-1.5 rounded-lg bg-surface-container-high text-tertiary">
+<span class="material-symbols-outlined text-sm">work</span>
+</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg font-bold text-on-surface">18</span>
+<span class="text-label-sm font-label-sm px-1.5 py-0.5 rounded bg-primary-container/15 text-primary border border-primary/20">
+              4 high priority
+            </span>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-1">3 pending executive sign-off</p>
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-tertiary/5 rounded-full blur-2xl group-hover:bg-tertiary/10 transition-all pointer-events-none"></div>
+</div>
+<!-- Card 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-low/70 border border-outline-variant/30 relative overflow-hidden backdrop-blur-sm group hover:border-primary/40 transition-all">
+<div class="flex items-start justify-between">
+<span class="text-label-md font-label-md text-outline">AI Interviews Conducted</span>
+<span class="p-1.5 rounded-lg bg-surface-container-high text-secondary">
+<span class="material-symbols-outlined text-sm">record_voice_over</span>
+</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg font-bold text-on-surface">32</span>
+<span class="text-label-sm font-label-sm text-emerald-400">91% completion</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-1">Avg length: 18m 42s</p>
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-secondary/5 rounded-full blur-2xl group-hover:bg-secondary/10 transition-all pointer-events-none"></div>
+</div>
+<!-- Card 4 -->
+<div class="p-space-md rounded-xl bg-surface-container-low/70 border border-outline-variant/30 relative overflow-hidden backdrop-blur-sm group hover:border-primary/40 transition-all">
+<div class="flex items-start justify-between">
+<span class="text-label-md font-label-md text-outline">Average AI Match Score</span>
+<span class="p-1.5 rounded-lg bg-surface-container-high text-primary-container">
+<span class="material-symbols-outlined text-sm">insights</span>
+</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg font-bold text-on-surface font-label-lg">84.6%</span>
+<span class="text-label-sm font-label-sm text-emerald-400 font-semibold">+3.2% calibration</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-1">Based on technical telemetry</p>
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary-container/10 rounded-full blur-2xl group-hover:bg-primary-container/20 transition-all pointer-events-none"></div>
+</div>
+</section>
+<!-- ================= PIPELINE STAGE TRACKER ================= -->
+<section class="p-space-lg rounded-xl bg-surface-container-low/70 border border-outline-variant/30 backdrop-blur-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="text-headline-sm font-headline-sm text-on-surface font-semibold">Active Pipeline Stage Velocity</span>
+<span class="text-label-sm font-label-sm text-outline">| Real-time Conversion Flow</span>
+</div>
+<button class="text-label-sm font-label-sm text-primary hover:underline flex items-center gap-1">
+<span>Configure Thresholds</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+<!-- Horizontal Interactive Flow Tracker -->
+<div class="grid grid-cols-2 md:grid-cols-5 gap-3 relative">
+<!-- Stage 1 -->
+<div class="p-3 rounded-lg bg-surface-container-lowest border border-outline-variant/20 flex flex-col justify-between relative group hover:border-outline-variant/50 transition-all">
+<div class="flex items-center justify-between text-outline">
+<span class="text-label-sm font-label-sm">Stage 01</span>
+<span class="material-symbols-outlined text-sm">inbox</span>
+</div>
+<div class="mt-3">
+<div class="text-headline-md font-headline-md font-bold text-on-surface font-label-lg">64</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant font-medium">New Applicants</div>
+</div>
+<div class="mt-3 w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-outline w-full h-full rounded-full"></div>
+</div>
+</div>
+<!-- Stage 2 -->
+<div class="p-3 rounded-lg bg-surface-container-lowest border border-outline-variant/20 flex flex-col justify-between relative group hover:border-outline-variant/50 transition-all">
+<div class="flex items-center justify-between text-outline">
+<span class="text-label-sm font-label-sm">Stage 02</span>
+<span class="material-symbols-outlined text-sm text-tertiary">document_scanner</span>
+</div>
+<div class="mt-3">
+<div class="text-headline-md font-headline-md font-bold text-on-surface font-label-lg">48</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant font-medium">AI Screening</div>
+</div>
+<div class="mt-3 w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary w-3/4 h-full rounded-full"></div>
+</div>
+</div>
+<!-- Stage 3 (Highlighted Flow Point) -->
+<div class="p-3 rounded-lg bg-surface-container-lowest border border-primary/40 shadow-[0_0_20px_-8px_rgba(247,81,161,0.3)] flex flex-col justify-between relative group transition-all">
+<div class="flex items-center justify-between text-primary">
+<span class="text-label-sm font-label-sm">Stage 03</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">record_voice_over</span>
+</div>
+<div class="mt-3">
+<div class="text-headline-md font-headline-md font-bold text-primary font-label-lg">32</div>
+<div class="text-body-sm font-body-sm text-on-surface font-medium">AI Voice Interview</div>
+</div>
+<div class="mt-3 w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container w-2/3 h-full rounded-full shadow-[0_0_8px_#f751a1]"></div>
+</div>
+</div>
+<!-- Stage 4 -->
+<div class="p-3 rounded-lg bg-surface-container-lowest border border-outline-variant/20 flex flex-col justify-between relative group hover:border-outline-variant/50 transition-all">
+<div class="flex items-center justify-between text-outline">
+<span class="text-label-sm font-label-sm">Stage 04</span>
+<span class="material-symbols-outlined text-sm text-secondary">supervisor_account</span>
+</div>
+<div class="mt-3">
+<div class="text-headline-md font-headline-md font-bold text-on-surface font-label-lg">14</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant font-medium">HM Review</div>
+</div>
+<div class="mt-3 w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary w-1/3 h-full rounded-full"></div>
+</div>
+</div>
+<!-- Stage 5 -->
+<div class="p-3 rounded-lg bg-surface-container-lowest border border-outline-variant/20 flex flex-col justify-between relative group hover:border-outline-variant/50 transition-all">
+<div class="flex items-center justify-between text-outline">
+<span class="text-label-sm font-label-sm">Stage 05</span>
+<span class="material-symbols-outlined text-sm text-emerald-400">verified</span>
+</div>
+<div class="mt-3">
+<div class="text-headline-md font-headline-md font-bold text-emerald-400 font-label-lg">6</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant font-medium">Offer Extended</div>
+</div>
+<div class="mt-3 w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-400 w-1/5 h-full rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= MAIN SPLIT: AI MATCH RECOMMENDATIONS & OUTBOUND CALL LAUNCHER ================= -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+<!-- Left 2 Cols: AI Recommendations Card Matrix -->
+<div class="lg:col-span-2 space-y-space-md">
+<div class="p-space-lg rounded-xl bg-surface-container-low/70 border border-outline-variant/30 backdrop-blur-sm">
+<!-- Header with Role Filter -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-space-md border-b border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="p-1 rounded bg-primary-container/20 text-primary">
+<span class="material-symbols-outlined text-[16px]">stars</span>
+</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm font-semibold text-on-surface">Top AI Match Recommendations</h2>
+<p class="text-label-sm font-label-sm text-outline">Dynamic ranking weighted by technical telemetry &amp; voice assessment</p>
+</div>
+</div>
+<!-- Filter Selector -->
+<div class="flex items-center gap-2">
+<span class="text-label-sm font-label-sm text-outline">Target Role:</span>
+<div class="relative">
+<select class="bg-surface-container-lowest border border-outline-variant/40 rounded-lg px-3 py-1 pr-8 text-label-md font-label-md text-on-surface focus:border-primary-container focus:outline-none appearance-none cursor-pointer">
+<option selected="">Senior Backend Engineer</option>
+<option>Staff MLOps Architect</option>
+<option>Principal Infrastructure Lead</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-sm">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Candidate Cards List -->
+<div class="mt-space-md space-y-3">
+<!-- Candidate 1: Alex Johnson (Top Ranked) -->
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-primary/30 hover:border-primary/60 transition-all relative overflow-hidden group">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<!-- Bio & Match Metric -->
+<div class="flex items-start gap-3">
+<div class="relative w-12 h-12 rounded-xl ring-1 ring-primary/40 overflow-hidden flex-shrink-0 bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Alex Johnson professional portrait, modern software engineer with sharp glasses, cinematic lighting with subtle magenta edge highlights, dark minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCRsYnjb_jgsOZ2zLJJ643eEslYGziw11-y_h7BquFBjDJaJZxal4S9bqEa36Gk0VlMcvgc2DnSd7bzY5h3v27Z0FpxrHdVteabiNoMBuLj5rOLOKDl6wCg3OqSE5q8v08K7gtnA_hYn87JNbEFpSWs41DR58jw_NegpZfvWKoqqN0VU0MHf4SRkL5ooQ1aBvogqgLuc9UYFRO7VZQrNMQHQxUGM73OXE9xWn51dRSKImkNzYXaIQK"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-surface-container-lowest rounded-full"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="text-headline-sm font-headline-sm font-semibold text-on-surface">Alex Johnson</span>
+<!-- AI Sparkle Badge: Strong Hire -->
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary-container/15 text-primary border border-primary/30 flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                          Strong Hire
+                        </span>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-0.5">Applied 2d ago • Ex-Stripe • 7+ YOE</p>
+<!-- Skill Chips -->
+<div class="flex flex-wrap gap-1.5 mt-2">
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-outline-variant/30">Python</span>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-outline-variant/30">FastAPI</span>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-outline-variant/30">Distributed Systems</span>
+</div>
+</div>
+</div>
+<!-- Telemetry & Action Buttons -->
+<div class="flex flex-col sm:items-end justify-between gap-3 min-w-[200px] border-t md:border-t-0 pt-3 md:pt-0 border-outline-variant/20">
+<div class="flex items-center gap-3">
+<div class="text-right">
+<div class="text-label-sm font-label-sm text-outline">Voice Interview</div>
+<div class="text-label-md font-label-md text-emerald-400 font-semibold">Completed (89%)</div>
+</div>
+<div class="w-12 h-12 rounded-lg bg-surface-container border border-outline-variant/30 flex flex-col items-center justify-center">
+<span class="text-headline-sm font-headline-sm font-bold text-primary font-label-lg leading-none">94</span>
+<span class="text-[9px] font-label-sm text-outline uppercase tracking-wider">Match</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-sm font-label-sm border border-outline-variant/30 transition-colors">
+                        View Full Report
+                      </button>
+<button class="px-2.5 py-1.5 rounded-lg bg-primary-container text-white text-label-sm font-label-sm font-medium hover:brightness-110 shadow-[0_0_15px_rgba(247,81,161,0.3)] transition-all">
+                        Schedule Panel
+                      </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Candidate 2: Sarah Wilson -->
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-outline-variant/30 hover:border-outline-variant/60 transition-all relative group">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="relative w-12 h-12 rounded-xl ring-1 ring-outline-variant/40 overflow-hidden flex-shrink-0 bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Sarah Wilson portrait, AI research engineer with confident relaxed posture, dark modern industrial studio, high key neutral lighting with deep charcoal tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzIWqLL7Y96oM_slwIsMh9njUR2NKUP0o_PefWowDwHI1nYOg3RuBgiX9cf-QpzUxKcbLNpPMx7UUqDvdY8SLP_5MvTc8inrAcsBWHkdhZaqhBE3ShnwjnVq9TyCztjLBuZpAmtVA0acIb9IlypnwiY3tiuU8Vr-T599AmONj1ss8GrlP6bdO5bvZXv9kB1ysU163gmJh1804j3ZnHra_cfmBAkOQHURS03KRf9QhFBioRmK1Qy37F"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-tertiary border-2 border-surface-container-lowest rounded-full"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="text-headline-sm font-headline-sm font-semibold text-on-surface">Sarah Wilson</span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-tertiary/10 text-tertiary border border-tertiary/30 font-medium">
+                          High Match
+                        </span>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-0.5">Applied 4d ago • Ex-DeepMind • 5+ YOE</p>
+<div class="flex flex-wrap gap-1.5 mt-2">
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-outline-variant/30">PyTorch</span>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-outline-variant/30">MLOps</span>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-outline-variant/30">LLMs</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:items-end justify-between gap-3 min-w-[200px] border-t md:border-t-0 pt-3 md:pt-0 border-outline-variant/20">
+<div class="flex items-center gap-3">
+<div class="text-right">
+<div class="text-label-sm font-label-sm text-outline">Voice Interview</div>
+<div class="text-label-md font-label-md text-tertiary font-medium">Scheduled (Today)</div>
+</div>
+<div class="w-12 h-12 rounded-lg bg-surface-container border border-outline-variant/30 flex flex-col items-center justify-center">
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface font-label-lg leading-none">91</span>
+<span class="text-[9px] font-label-sm text-outline uppercase tracking-wider">Match</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-sm font-label-sm border border-outline-variant/30 transition-colors">
+                        View Dossier
+                      </button>
+<button class="px-2.5 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface text-label-sm font-label-sm border border-outline-variant/30 transition-colors">
+                        Reschedule
+                      </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Candidate 3: Michael Chang -->
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-outline-variant/30 hover:border-outline-variant/60 transition-all relative group">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="relative w-12 h-12 rounded-xl ring-1 ring-outline-variant/40 overflow-hidden flex-shrink-0 bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Michael Chang portrait, backend platform architect with attentive expression, modern dark office setting, subtle architectural illumination and dark matte finishes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiRtXACA3JMZWd-3l8d1ZGqU9VUtI8FjiN37Iwhpi9BgFYMhOtGFXtfBHgiuk5C7JkM3SVySHuoHNqvuJEThysc1gIPuKL1BhPDCcFRJ7t4f5UAsjaJQyYe3DxZLn9w7R_X05ISQkt9pMpM9_gqKHqpBD5Qgf8wXEkqKJu5_RBkJFE7jP6ScAhJsa0rO5yM6Kr54PlxH7Hs-YVimZJHbLwlya2Cwkv9cu8VFR4_PPi5AD5hIfVZjVg"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-amber-400 border-2 border-surface-container-lowest rounded-full"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="text-headline-sm font-headline-sm font-semibold text-on-surface">Michael Chang</span>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-variant text-outline border border-outline-variant/30 font-medium">
+                          Consider
+                        </span>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-0.5">Applied 1w ago • Ex-Datadog • 6+ YOE</p>
+<div class="flex flex-wrap gap-1.5 mt-2">
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-outline-variant/30">Go</span>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-outline-variant/30">Kubernetes</span>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant border border-outline-variant/30">Kafka</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:items-end justify-between gap-3 min-w-[200px] border-t md:border-t-0 pt-3 md:pt-0 border-outline-variant/20">
+<div class="flex items-center gap-3">
+<div class="text-right">
+<div class="text-label-sm font-label-sm text-outline">Voice Interview</div>
+<div class="text-label-md font-label-md text-outline font-medium">Under Review</div>
+</div>
+<div class="w-12 h-12 rounded-lg bg-surface-container border border-outline-variant/30 flex flex-col items-center justify-center">
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface-variant font-label-lg leading-none">87</span>
+<span class="text-[9px] font-label-sm text-outline uppercase tracking-wider">Match</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-sm font-label-sm border border-outline-variant/30 transition-colors">
+                        Inspect Telemetry
+                      </button>
+<button class="px-2.5 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface text-label-sm font-label-sm border border-outline-variant/30 transition-colors">
+                        Re-evaluate
+                      </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right 1 Col: Quick AI Outbound Call Launcher Widget -->
+<div class="space-y-space-md">
+<div class="p-space-lg rounded-xl bg-surface-container-low/70 border border-outline-variant/30 backdrop-blur-sm relative overflow-hidden">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="text-headline-sm font-headline-sm font-semibold text-on-surface">Voice Screen Dispatcher</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline font-mono">v3.4-live</span>
+</div>
+<!-- Target Profile Card -->
+<div class="mt-4 p-3 rounded-lg bg-surface-container-lowest border border-outline-variant/20">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Direct Target Candidate</span>
+<div class="flex items-center gap-3 mt-2">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">
+                  AJ
+                </div>
+<div>
+<h4 class="text-headline-sm font-headline-sm font-semibold text-on-surface text-sm">Alex Johnson</h4>
+<p class="text-label-sm font-label-sm text-outline">+1 (555) 249-8812 • Verified</p>
+</div>
+</div>
+</div>
+<!-- Voice Configuration Parameters -->
+<div class="mt-4 space-y-3">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-outline">Agent Persona</span>
+<span class="text-on-surface font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-primary">record_voice_over</span>
+                  Athena Technical Pro
+                </span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-outline">Domain Model</span>
+<span class="text-on-surface font-label-sm">FastAPI &amp; Concurrency</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-outline">Latency Target</span>
+<span class="text-emerald-400 font-label-sm">~240ms (Sub-second)</span>
+</div>
+<!-- Animated Soundwave Preview -->
+<div class="p-2.5 rounded-lg bg-surface-container-lowest border border-outline-variant/20 flex items-center justify-center gap-1 h-12">
+<span class="w-1 bg-primary/40 h-3 rounded-full animate-pulse"></span>
+<span class="w-1 bg-primary/70 h-6 rounded-full animate-pulse delay-75"></span>
+<span class="w-1 bg-primary h-8 rounded-full animate-pulse delay-100"></span>
+<span class="w-1 bg-primary-container h-10 rounded-full animate-pulse delay-150"></span>
+<span class="w-1 bg-primary h-7 rounded-full animate-pulse delay-100"></span>
+<span class="w-1 bg-secondary h-4 rounded-full animate-pulse delay-200"></span>
+<span class="w-1 bg-primary/40 h-2 rounded-full animate-pulse"></span>
+</div>
+</div>
+<!-- Launch Outbound Call Trigger Button -->
+<button class="mt-5 w-full py-2.5 px-4 rounded-lg bg-gradient-to-r from-primary-container to-secondary hover:brightness-110 text-white font-headline-sm font-medium text-sm flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(247,81,161,0.35)] transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">phone_in_talk</span>
+<span>Trigger Automated AI Voice Screen</span>
+</button>
+<p class="text-[11px] text-outline text-center mt-2.5">
+              Candidate previously opted-in via SMS protocol. Real-time transcript streams to dashboard.
+            </p>
+</div>
+<!-- Quick Telemetry Insight Mini-Card -->
+<div class="p-4 rounded-xl bg-surface-container-low/70 border border-outline-variant/30 backdrop-blur-sm flex items-center gap-3">
+<div class="p-2 rounded-lg bg-surface-container text-tertiary">
+<span class="material-symbols-outlined text-lg">psychology</span>
+</div>
+<div>
+<h5 class="text-headline-sm font-headline-sm text-xs font-semibold text-on-surface">LLM Consensus Engine Active</h5>
+<p class="text-body-sm font-body-sm text-outline text-[11px]">Evaluating 14 behavioral signals in live audio feed.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= ACTIVE JOBS SNAPSHOT TABLE ================= -->
+<section class="p-space-lg rounded-xl bg-surface-container-low/70 border border-outline-variant/30 backdrop-blur-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-space-md">
+<div>
+<h3 class="text-headline-sm font-headline-sm font-semibold text-on-surface">Active Jobs Snapshot</h3>
+<p class="text-label-sm font-label-sm text-outline">Pipeline distribution and candidate scoring across priority positions</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 rounded-lg bg-surface-container-high text-on-surface text-label-sm font-label-sm border border-outline-variant/30 hover:bg-surface-variant transition-colors">
+              Filter by Dept
+            </button>
+<button class="px-3 py-1 rounded-lg bg-surface-container-high text-on-surface text-label-sm font-label-sm border border-outline-variant/30 hover:bg-surface-variant transition-colors">
+              Export Telemetry
+            </button>
+</div>
+</div>
+<!-- Responsive Table Container -->
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/30 text-label-sm font-label-sm text-outline">
+<th class="py-2.5 px-3">Role &amp; Department</th>
+<th class="py-2.5 px-3">Total Applicants</th>
+<th class="py-2.5 px-3">Match Spectrum (≥90% / 70-89% / &lt;70%)</th>
+<th class="py-2.5 px-3">AI Stage Status</th>
+<th class="py-2.5 px-3">Hiring Lead</th>
+<th class="py-2.5 px-3 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20 text-body-sm font-body-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">Senior Backend Engineer</div>
+<div class="text-label-sm font-label-sm text-outline">Core Infrastructure • San Francisco / Remote</div>
+</td>
+<td class="py-3 px-3">
+<span class="font-label-md font-bold text-on-surface">64</span>
+<span class="text-label-sm text-emerald-400 ml-1">(+8 new)</span>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-1.5 w-48">
+<!-- Segmented Match Spectrum Bar -->
+<div class="flex-1 bg-surface-container h-2 rounded-full overflow-hidden flex">
+<div class="bg-emerald-400 w-[24%]" title="24% &gt;= 90%"></div>
+<div class="bg-amber-400 w-[45%]" title="45% 70-89%"></div>
+<div class="bg-outline-variant w-[31%]" title="31% &lt; 70%"></div>
+</div>
+<span class="text-label-sm font-label-sm text-outline">12 Top</span>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-primary-container/15 text-primary border border-primary/20">
+                    Voice Screening (14)
+                  </span>
+</td>
+<td class="py-3 px-3">
+<span class="text-on-surface">Elena Vance</span>
+</td>
+<td class="py-3 px-3 text-right">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">Staff MLOps Architect</div>
+<div class="text-label-sm font-label-sm text-outline">Foundation Models • New York, NY</div>
+</td>
+<td class="py-3 px-3">
+<span class="font-label-md font-bold text-on-surface">42</span>
+<span class="text-label-sm text-emerald-400 ml-1">(+3 new)</span>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-1.5 w-48">
+<div class="flex-1 bg-surface-container h-2 rounded-full overflow-hidden flex">
+<div class="bg-emerald-400 w-[35%]" title="35% &gt;= 90%"></div>
+<div class="bg-amber-400 w-[40%]" title="40% 70-89%"></div>
+<div class="bg-outline-variant w-[25%]" title="25% &lt; 70%"></div>
+</div>
+<span class="text-label-sm font-label-sm text-outline">15 Top</span>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-tertiary/10 text-tertiary border border-tertiary/20">
+                    HM Review (6)
+                  </span>
+</td>
+<td class="py-3 px-3">
+<span class="text-on-surface">Marcus Ray</span>
+</td>
+<td class="py-3 px-3 text-right">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">Principal Frontend Systems Lead</div>
+<div class="text-label-sm font-label-sm text-outline">Product Engineering • Remote</div>
+</td>
+<td class="py-3 px-3">
+<span class="font-label-md font-bold text-on-surface">88</span>
+<span class="text-label-sm text-outline ml-1">(0 new)</span>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-1.5 w-48">
+<div class="flex-1 bg-surface-container h-2 rounded-full overflow-hidden flex">
+<div class="bg-emerald-400 w-[18%]" title="18% &gt;= 90%"></div>
+<div class="bg-amber-400 w-[50%]" title="50% 70-89%"></div>
+<div class="bg-outline-variant w-[32%]" title="32% &lt; 70%"></div>
+</div>
+<span class="text-label-sm font-label-sm text-outline">8 Top</span>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-variant text-outline border border-outline-variant/30">
+                    Calibration Needed
+                  </span>
+</td>
+<td class="py-3 px-3">
+<span class="text-on-surface">Elena Vance</span>
+</td>
+<td class="py-3 px-3 text-right">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+</div>
+</body></html>
